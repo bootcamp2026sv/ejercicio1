@@ -3,10 +3,25 @@ import { Card } from 'primereact/card';
 import { Calendar } from 'primereact/calendar';
 import { Knob } from 'primereact/knob';
 import { Button } from 'primereact/button';
-
+import { addLocale } from 'primereact/api';
+import { Chips } from "primereact/chips";
 export default function Actividades() {
+    
     const [date, setDate] = useState(new Date());
-    const [progress, setProgress] = useState(60);
+    const [progress, setProgress] = useState(15);
+    const [value, setValue] = useState([]);
+
+     addLocale('es', {
+        firstDayOfWeek: 1,
+        showMonthAfterYear: true,
+        dayNames: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+        dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
+        dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+        monthNames: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+        monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+        today: 'Hoy',
+        clear: 'Limpiar'
+    });
 
     return (
         <Card title="Panel de Actividad" className="shadow-2 border-round">
@@ -29,8 +44,10 @@ export default function Actividades() {
                         value={date} 
                         onChange={(e) => setDate(e.value)} 
                         inline 
+                        locale='es'
                         showWeek
                     />
+                    <Chips value={value} onChange={(e) => setValue(e.value)} separator="," />
                     
                     {/* MOSTRAMOS LA FECHA SELECCIONADA AQUÍ ABAJO */}
                     {date && (
