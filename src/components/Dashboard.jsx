@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Button } from 'primereact/button';
 import Perfil from './Perfil';
 import Actividades from './Actividades';
-
+import TablaFiltros from './TablaFiltros';
+import GraficaVentas from './GraficaVentas';
+import FormularioRegistro from './FormularioRegistro';
 export default function Dashboard({ user, onLogout }) {
     // Control de la sección activa: 'perfil' o 'actividad'
     const [activeSection, setActiveSection] = useState('perfil');
@@ -13,6 +15,12 @@ export default function Dashboard({ user, onLogout }) {
                 return <Perfil />;
             case 'actividad':
                 return <Actividades />;
+            case 'tabla':
+                return <TablaFiltros />;
+            case 'grafico':
+                return <GraficaVentas />;
+                 case 'formulario':
+                return <FormularioRegistro />;
             default:
                 return <Perfil />;
         }
@@ -54,6 +62,24 @@ export default function Dashboard({ user, onLogout }) {
                         label="Actividades" 
                         icon="pi pi-calendar" 
                         onClick={() => setActiveSection('actividad')}
+                        className={`justify-content-start text-left w-full ${activeSection === 'activity' ? 'p-button-primary' : 'p-button-text text-gray-400'}`}
+                    />
+                     <Button 
+                        label="Tabla" 
+                        icon="pi pi-calendar" 
+                        onClick={() => setActiveSection('tabla')}
+                        className={`justify-content-start text-left w-full ${activeSection === 'activity' ? 'p-button-primary' : 'p-button-text text-gray-400'}`}
+                    />
+                    <Button 
+                        label="Graficos" 
+                        icon="pi pi-calendar" 
+                        onClick={() => setActiveSection('grafico')}
+                        className={`justify-content-start text-left w-full ${activeSection === 'activity' ? 'p-button-primary' : 'p-button-text text-gray-400'}`}
+                    />
+                     <Button 
+                        label="Formulario" 
+                        icon="pi pi-calendar" 
+                        onClick={() => setActiveSection('formulario')}
                         className={`justify-content-start text-left w-full ${activeSection === 'activity' ? 'p-button-primary' : 'p-button-text text-gray-400'}`}
                     />
                 </nav>
